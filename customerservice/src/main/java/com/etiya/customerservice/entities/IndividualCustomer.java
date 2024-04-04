@@ -1,6 +1,7 @@
 package com.etiya.customerservice.entities;
 
 
+import com.etiya.customerservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "individual_customers")
 @Data
-public class IndividualCustomer {
+public class IndividualCustomer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

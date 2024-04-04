@@ -26,16 +26,18 @@ import java.util.List;
 public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
     private CityBusinessRules cityBusinessRules;
+
     @Override
     public GetListResponse<GetAllCityResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
         Page<City> response = cityRepository.findAll(pageable);
+
+
         GetListResponse<GetAllCityResponse> cityResponse = CityMapper.INSTANCE.getAllCityResponseFromCity(response);
         cityResponse.setHasNext(response.hasNext());
         cityResponse.setHasPrevious(response.hasPrevious());
 
         return cityResponse;
-
     }
 
 

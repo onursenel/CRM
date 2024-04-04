@@ -14,7 +14,8 @@ import org.springframework.data.domain.Page;
 public interface CityMapper {
     CityMapper INSTANCE = Mappers.getMapper(CityMapper.class);
     @Mapping(source = "city.content",target = "items")
-    GetListResponse <GetAllCityResponse> getAllCityResponseFromCity(Page<City> city);
+    GetListResponse<GetAllCityResponse> getAllCityResponseFromCity(Page<City> city);
+
 
     GetCityResponse getCityResponseFromCity(City city);
     City cityFromCreateCityRequest(CreateCityRequest createCityRequest);

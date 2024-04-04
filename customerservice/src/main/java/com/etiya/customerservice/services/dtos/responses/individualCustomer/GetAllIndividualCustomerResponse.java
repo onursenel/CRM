@@ -1,5 +1,6 @@
 package com.etiya.customerservice.services.dtos.responses.individualCustomer;
 
+import com.etiya.customerservice.core.business.paging.BasePagingModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

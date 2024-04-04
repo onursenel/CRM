@@ -17,5 +17,4 @@ public class GetAllCityResponse {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     private LocalDateTime deletedDate;
-
 }

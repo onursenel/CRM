@@ -18,5 +18,4 @@ public class GetListResponse<T> extends BasePagingModel {
     public void setItems(List<T> items) {
         _items = items;
     }
-
 }

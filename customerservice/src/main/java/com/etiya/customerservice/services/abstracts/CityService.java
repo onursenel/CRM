@@ -9,7 +9,6 @@ import com.etiya.customerservice.services.dtos.responses.city.*;
 import java.util.List;
 
 public interface CityService {
-
     GetListResponse<GetAllCityResponse> getAll(PageInfo pageInfo);
 
     GetCityResponse getById(long id);
