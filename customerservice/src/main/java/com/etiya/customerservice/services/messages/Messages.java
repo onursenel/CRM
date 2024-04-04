@@ -4,6 +4,7 @@ public class Messages {
 
     public static class BusinessErrors{
         public static final String CITY_NAME_EXIST = "Bu şehir adı zaten mevcut";
+        public static final String AddressDescriptionExists = "addressDescriptionExists";
 
 
     }
