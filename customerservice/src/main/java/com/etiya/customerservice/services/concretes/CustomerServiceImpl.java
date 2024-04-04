@@ -1,14 +1,22 @@
 package com.etiya.customerservice.services.concretes;
 
+import com.etiya.customerservice.core.business.paging.PageInfo;
+import com.etiya.customerservice.entities.City;
+import com.etiya.customerservice.entities.Customer;
 import com.etiya.customerservice.services.abstracts.CustomerService;
 import com.etiya.customerservice.services.dtos.requests.customer.CreateCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.customer.UpdateCustomerRequest;
 import com.etiya.customerservice.services.dtos.responses.customer.*;
+import com.etiya.customerservice.services.mappers.CustomerMapper;
 import com.etiya.customerservice.services.rules.CustomerBusinessRules;
 import com.etiya.customerservice.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,39 +26,51 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
     @Override
     public GetCustomerResponse getById(long id) {
-        /*
-        Customer customer = customerRepository.findById(id).orElseThrow();//id db'de yoksa hata atıyor
-        GetCustomerResponse customerResponse = modelMapperService.forResponse().map(customer, GetCustomerResponse.class);
-        return customerResponse;
-        */
-
-        /*customerBusinessRules.checkByCustomerId(id);
-        GetCustomerResponse customerResponse = modelMapperService.forResponse()
-                .map(customerBusinessRules.checkByCustomerId(id), GetCustomerResponse.class);
-        return customerResponse;*/
-
-
-
-        return null;
+        customerBusinessRules.customerNotFound(id);
+        Customer customer = customerRepository.findById(id).get();
+        return CustomerMapper.INSTANCE.getCustomerResponseFromCity(customer);
     }
 
+
     @Override
-    public List<GetAllCustomerResponse> getAll() {
-        return null;
+    public List<GetAllCustomerResponse> getAll(PageInfo pageInfo) {
+        Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
+        Page<Customer> response = customerRepository.findAll(pageable);
+        return response
+                .filter(customer -> customer.getDeletedDate() == null)
+                .map(customer -> CustomerMapper.INSTANCE.getAllCustomerResponseFromCity(customer))
+                .toList();
     }
 
     @Override
     public CreatedCustomerResponse add(CreateCustomerRequest createCustomerRequest) {
-        return null;
+        customerBusinessRules.customerEmailCanNotBeDuplicatedWhenInserted(createCustomerRequest.getEmail());
+        Customer customer = CustomerMapper.INSTANCE.customerFromCreateCustomerRequest(createCustomerRequest);
+        Customer createdCustomer = customerRepository.save(customer);
+
+        CreatedCustomerResponse createdCustomerResponse = CustomerMapper.INSTANCE.createdCustomerResponseFromCity(createdCustomer);
+
+        return  createdCustomerResponse;
     }
 
     @Override
     public UpdatedCustomerResponse update(UpdateCustomerRequest updateCustomerRequest) {
-        return null;
+        customerBusinessRules.customerEmailCanNotBeDuplicatedWhenInserted(updateCustomerRequest.getEmail());
+        customerBusinessRules.customerNotFound(updateCustomerRequest.getId());
+        Customer customer = CustomerMapper.INSTANCE.customerFromUpdateCustomerRequest(updateCustomerRequest);
+        Customer updatedCustomer = customerRepository.save(customer);
+
+        UpdatedCustomerResponse updatedCustomerResponse = CustomerMapper.INSTANCE.updatedCustomerResponseFromCity(updatedCustomer);
+
+        return  updatedCustomerResponse;
     }
 
     @Override
     public DeletedCustomerResponse delete(long id) {
-        return null;
+        customerBusinessRules.deleteCustomer(id);
+        Customer customer = customerRepository.findById(id).get();
+        customer.setDeletedDate(LocalDateTime.now());
+        customerRepository.save(customer);
+        return CustomerMapper.INSTANCE.deletedCustomerResponseFromCustomer(customer);
     }
 }

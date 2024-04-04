@@ -4,10 +4,14 @@ public class Messages {
 
     public static class BusinessErrors{
         public static final String CITY_NAME_EXIST = "Bu şehir adı zaten mevcut";
+
+
     }
 
     public class IdMessage{
         public static final String ID_IS_NOT_NULL = "id is not null";
+        public static final String ID_IS_NOT_FOUND = "id is not found";
+
     }
 
     public class Customer{
@@ -15,6 +19,8 @@ public class Messages {
         public static final String EMAIL_IS_NOT_EMPTY ="Email is not empty!";
 
         public static final String INVALID_EMAIL_FORMAT ="Invalid email format!";
+        public static final String DELETED_CUSTOMER = "This customer is deleted";
+        public static final String EMAIL_EXIST = "This e-mail allready exsist";
     }
     public class IndividualCustomer{
 

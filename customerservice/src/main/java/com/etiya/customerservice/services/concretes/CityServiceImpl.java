@@ -1,6 +1,8 @@
 package com.etiya.customerservice.services.concretes;
 
+import com.etiya.customerservice.core.business.paging.BasePagingModel;
 import com.etiya.customerservice.core.business.paging.PageInfo;
+import com.etiya.customerservice.core.business.responses.GetListResponse;
 import com.etiya.customerservice.entities.City;
 import com.etiya.customerservice.repositories.CityRepository;
 import com.etiya.customerservice.services.abstracts.CityService;
@@ -25,15 +27,17 @@ public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
     private CityBusinessRules cityBusinessRules;
     @Override
-    public List<GetAllCityResponse> getAll(PageInfo pageInfo) {
+    public GetListResponse<GetAllCityResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
         Page<City> response = cityRepository.findAll(pageable);
-        return response
-                .filter(city -> city.getDeletedDate() == null)
-                .map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city))
-                .toList();
+        GetListResponse<GetAllCityResponse> cityResponse = CityMapper.INSTANCE.getAllCityResponseFromCity(response);
+        cityResponse.setHasNext(response.hasNext());
+        cityResponse.setHasPrevious(response.hasPrevious());
+
+        return cityResponse;
 
     }
+
 
     @Override
     public GetCityResponse getById(long id) {
@@ -65,6 +69,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public DeletedCityResponse delete(long id) {
+
         City city = cityRepository.findById(id).get();
         city.setDeletedDate(LocalDateTime.now());
         cityRepository.save(city);

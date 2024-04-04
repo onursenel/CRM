@@ -1,6 +1,7 @@
 package com.etiya.customerservice.controllers;
 
 import com.etiya.customerservice.core.business.paging.PageInfo;
+import com.etiya.customerservice.core.business.responses.GetListResponse;
 import com.etiya.customerservice.services.abstracts.CityService;
 import com.etiya.customerservice.services.dtos.requests.city.CreateCityRequest;
 import com.etiya.customerservice.services.dtos.requests.city.UpdateCityRequest;
@@ -19,7 +20,7 @@ public class CitiesController {
 
 
     @GetMapping("/getAll")
-    public List<GetAllCityResponse> getAll(PageInfo pageInfo){
+    public GetListResponse<GetAllCityResponse> getAll(PageInfo pageInfo){
         return cityService.getAll(pageInfo);
     }
 
