@@ -1,8 +1,9 @@
 spring:
   application:
-    name: customerservice
+    name: GatewayServer
   cloud:
     config:
       profile: dev
   config:
     import: configserver:http://localhost:8050
+
