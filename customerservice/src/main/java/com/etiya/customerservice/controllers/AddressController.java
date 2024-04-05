@@ -2,6 +2,7 @@ package com.etiya.customerservice.controllers;
 
 
 import com.etiya.customerservice.core.business.paging.PageInfo;
+import com.etiya.customerservice.core.business.responses.GetListResponse;
 import com.etiya.customerservice.services.abstracts.AddressService;
 import com.etiya.customerservice.services.dtos.requests.address.CreateAddressRequest;
 import com.etiya.customerservice.services.dtos.requests.address.UpdateAddressRequest;
@@ -19,7 +20,7 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping("/getAll")
-    public List<GetAllAddressResponse> getAll(PageInfo pageInfo){
+    public GetListResponse<GetAllAddressResponse> getAll(PageInfo pageInfo){
         return addressService.getAll(pageInfo);
     }
 

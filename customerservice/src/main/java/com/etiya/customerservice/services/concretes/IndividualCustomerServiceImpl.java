@@ -2,24 +2,29 @@ package com.etiya.customerservice.services.concretes;
 
 import com.etiya.customerservice.core.business.paging.PageInfo;
 import com.etiya.customerservice.core.business.responses.GetListResponse;
+import com.etiya.customerservice.entities.Customer;
 import com.etiya.customerservice.entities.IndividualCustomer;
 import com.etiya.customerservice.repositories.IndividualCustomerRepository;
 import com.etiya.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiya.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiya.customerservice.services.dtos.responses.city.GetAllCityResponse;
+import com.etiya.customerservice.services.dtos.responses.customer.GetAllCustomerResponse;
 import com.etiya.customerservice.services.dtos.responses.individualCustomer.*;
 import com.etiya.customerservice.services.mappers.CityMapper;
+import com.etiya.customerservice.services.mappers.CustomerMapper;
 import com.etiya.customerservice.services.mappers.IndividualCustomerMapper;
 import com.etiya.customerservice.services.rules.IndividualCustomerBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -39,15 +44,21 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
         Page<IndividualCustomer> response = individualCustomerRepository.findAll(pageable);
 
-        GetListResponse<GetAllIndividualCustomerResponse> individualCustomerResponse = IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerResponseFromIndividualCustomer(response);
-        individualCustomerResponse.setHasNext(response.hasNext());
-        individualCustomerResponse.setHasPrevious(response.hasPrevious());
+        List<IndividualCustomer> filteredIndividualCustomer = response.getContent()
+                .stream()
+                .filter(individualCustomer -> individualCustomer.getDeletedDate() == null)
+                .collect(Collectors.toList());
+        Page<IndividualCustomer> filteredResponse = new PageImpl<>(filteredIndividualCustomer, pageable, response.getTotalElements());
 
+        GetListResponse<GetAllIndividualCustomerResponse> individualCustomerResponse = IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerResponseFromIndividualCustomer(filteredResponse);
+        individualCustomerResponse.setHasNext(filteredResponse.hasNext());
+        individualCustomerResponse.setHasPrevious(filteredResponse.hasPrevious());
         return individualCustomerResponse;
     }
 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
+        individualCustomerBusinessRules.individualCustomerNationalityIdCanNotBeDuplicatedWhenInserted(createIndividualCustomerRequest.getNationalityId());
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 

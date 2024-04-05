@@ -1,6 +1,7 @@
 package com.etiya.customerservice.controllers;
 
 import com.etiya.customerservice.core.business.paging.PageInfo;
+import com.etiya.customerservice.core.business.responses.GetListResponse;
 import com.etiya.customerservice.services.abstracts.CustomerService;
 import com.etiya.customerservice.services.dtos.requests.customer.CreateCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.customer.UpdateCustomerRequest;
@@ -19,7 +20,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/getAll")
-    public List<GetAllCustomerResponse> getAll(PageInfo pageInfo){
+    public GetListResponse<GetAllCustomerResponse> getAll(PageInfo pageInfo){
         return customerService.getAll(pageInfo);
     }
 

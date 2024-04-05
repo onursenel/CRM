@@ -2,10 +2,7 @@ package com.etiya.customerservice.services.dtos.requests.individualCustomer;
 
 
 import com.etiya.customerservice.services.messages.Messages;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +21,7 @@ public class UpdateIndividualCustomerRequest {
     @NotEmpty(message = Messages.IndividualCustomer.FIRST_NAME_IS_NOT_EMPTY)
     @Size(min = 2,message = Messages.IndividualCustomer.FIRST_NAME_MIN_SIZE)
     private String firstName;
+
 
     @Size(min=2,message = Messages.IndividualCustomer.MIDDLE_NAME_MIN_SIZE)
     private String middleName;

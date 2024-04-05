@@ -1,16 +1,22 @@
 package com.etiya.customerservice.services.mappers;
 
+import com.etiya.customerservice.core.business.responses.GetListResponse;
+import com.etiya.customerservice.entities.City;
 import com.etiya.customerservice.entities.Customer;
 import com.etiya.customerservice.services.dtos.requests.customer.CreateCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.customer.UpdateCustomerRequest;
+import com.etiya.customerservice.services.dtos.responses.city.GetAllCityResponse;
 import com.etiya.customerservice.services.dtos.responses.customer.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
+
 @Mapper
 public interface CustomerMapper {
     CustomerMapper INSTANCE= Mappers.getMapper(CustomerMapper.class);
-    GetAllCustomerResponse getAllCustomerResponseFromCity(Customer customer);
-
+    @Mapping(source = "customer.content",target = "items")
+    GetListResponse<GetAllCustomerResponse> getAllCustomerResponseFromCustomer(Page<Customer> customer);
 
     GetCustomerResponse getCustomerResponseFromCity(Customer customer);
 

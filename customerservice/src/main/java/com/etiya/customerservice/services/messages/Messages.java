@@ -6,6 +6,7 @@ public class Messages {
         public static final String CITY_NAME_EXIST = "Bu şehir adı zaten mevcut";
         public static final String AddressDescriptionExists = "addressDescriptionExists";
 
+        public static final String NATIONALITY_ID_EXIST = "Bu TC kimlik numarası mevcut";
 
     }
 

@@ -13,12 +13,14 @@ import com.etiya.customerservice.services.mappers.CityMapper;
 import com.etiya.customerservice.services.rules.CityBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -29,16 +31,25 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public GetListResponse<GetAllCityResponse> getAll(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
-        Page<City> response = cityRepository.findAll(pageable);
 
+        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());// Sayfalama bilgilerini kullanarak bir Pageable nesnesi oluşturuyoruz
+        Page<City> response = cityRepository.findAll(pageable);// cityRepository üzerinden findAll metodunu kullanarak veritabanından tüm şehirleri çekiyoruz
 
-        GetListResponse<GetAllCityResponse> cityResponse = CityMapper.INSTANCE.getAllCityResponseFromCity(response);
-        cityResponse.setHasNext(response.hasNext());
-        cityResponse.setHasPrevious(response.hasPrevious());
+        List<City> filteredCities = response.getContent()  // Filtrelenmiş şehir listesini tutacak bir List nesnesi oluşturuyoruz
+                // Şehirleri filtrelereyek silinmiş olanları çıkarıyoruz
+                .stream()
+                .filter(city -> city.getDeletedDate() == null)
+                .collect(Collectors.toList());
+        Page<City> filteredResponse = new PageImpl<>(filteredCities, pageable, response.getTotalElements()); // Filtrelenmiş şehir listesini kullanarak yeni bir Page nesnesi oluşturuyoruz
 
-        return cityResponse;
+        GetListResponse<GetAllCityResponse> cityResponse = CityMapper.INSTANCE.getAllCityResponseFromCity(filteredResponse); // Filtrelenmiş Page nesnesini GetAllCityResponse nesnelerine dönüştürmek için CityMapper kullanarak bir GetListResponse nesnesi oluşturuyoruz
+
+        cityResponse.setHasNext(filteredResponse.hasNext());// cityResponse nesnesinin hasNext özelliğini, filtrelendikten sonra kalan veriler için doğru şekilde ayarlıyoruz
+        cityResponse.setHasPrevious(filteredResponse.hasPrevious());   // cityResponse nesnesinin hasPrevious özelliğini, filtrelendikten sonra kalan veriler için geçerli olan hasPrevious özelliği ile eşliyoruz
+        return cityResponse; // Son olarak, filtrelenmiş ve dönüştürülmüş verileri içeren cityResponse nesnesini döndürüyoruz
     }
+
+
 
 
     @Override
