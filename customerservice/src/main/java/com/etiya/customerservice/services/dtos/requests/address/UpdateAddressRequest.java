@@ -15,6 +15,12 @@ public class UpdateAddressRequest {
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
     private long id;
 
+    @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
+    private long cityId;
+
+    @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
+    private long customerId;
+
     @NotNull
     @NotEmpty
     @Size(min = 7, max=20)
