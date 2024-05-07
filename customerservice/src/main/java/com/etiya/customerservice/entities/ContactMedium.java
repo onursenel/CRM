@@ -1,5 +1,6 @@
 package com.etiya.customerservice.entities;
 
+
 import com.etiya.customerservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,13 +9,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "customers")
+@Table(name = "contact_medium")
 @Data
-public class Customer extends BaseEntity {
+public class ContactMedium extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,13 +24,16 @@ public class Customer extends BaseEntity {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "customer")
-    private IndividualCustomer individualCustomer;
+    @Column(name = "home_phone")
+    private String homePhone;
 
-    @OneToOne(mappedBy = "customer")
-    private ContactMedium contactMedium;
+    @Column(name = "fax")
+    private String fax;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Address> addresses;
+    @Column(name = "mobilePhone")
+    private String mobilePhone;
 
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

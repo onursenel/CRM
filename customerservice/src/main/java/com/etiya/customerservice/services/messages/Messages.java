@@ -47,4 +47,8 @@ public class Messages {
     public class CityMessage{
     }
 
+    public class ContactMediumMessage{
+        public static final String ContactMediumEmailExists = "Contact Medium Email is Exist";
+    }
+
 }

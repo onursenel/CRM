@@ -16,9 +16,9 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/individualCustomers")
 @AllArgsConstructor
+@CrossOrigin
 public class IndividualCustomersController {
     private IndividualCustomerService individualCustomerService;
-
 
     @GetMapping("/getAll")
     public GetListResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo){
