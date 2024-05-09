@@ -12,6 +12,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 
 public class DeletedCityResponse {
-    private long id;
+    private String id;
     private String name;
 }

@@ -16,7 +16,7 @@ public class UpdateIndividualCustomerRequest {
 
 
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
-    private long id;
+    private String id;
 
     @NotEmpty(message = Messages.IndividualCustomer.FIRST_NAME_IS_NOT_EMPTY)
     @Size(min = 2,message = Messages.IndividualCustomer.FIRST_NAME_MIN_SIZE)

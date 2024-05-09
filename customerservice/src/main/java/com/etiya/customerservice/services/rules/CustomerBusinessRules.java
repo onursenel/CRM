@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CustomerBusinessRules {
     private CustomerRepository customerRepository;
 
-    public void customerNotFound(long customerId) {
+    public void customerNotFound(String customerId) {
         Optional<Customer> foundCustomer = customerRepository.findById(customerId);
 
         if (!foundCustomer.isPresent()) {
@@ -24,7 +24,7 @@ public class CustomerBusinessRules {
         }
     }
 
-    public void deleteCustomer(long id) {
+    public void deleteCustomer(String id) {
         Customer foundCustomer = customerRepository.findById(id).orElse(null);
 
         if (foundCustomer.getDeletedDate() != null) {

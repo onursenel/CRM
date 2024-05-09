@@ -53,7 +53,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public GetAddressResponse getById(long id) {
+    public GetAddressResponse getById(String id) {
         Address address = addressRepository.findById(id).get();
         return AddressMapper.INSTANCE.getAddressResponseFromAddress(address);
     }
@@ -79,7 +79,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public DeletedAddressResponse delete(long id) {
+    public DeletedAddressResponse delete(String id) {
         Address address = addressRepository.findById(id).get();
         address.setDeletedDate(LocalDateTime.now());
         addressRepository.save(address);

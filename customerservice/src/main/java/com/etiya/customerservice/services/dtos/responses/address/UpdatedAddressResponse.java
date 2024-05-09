@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class UpdatedAddressResponse {
-    private long id;
+    private String id;
     private String description;
     private LocalDateTime updatedDate;
 }

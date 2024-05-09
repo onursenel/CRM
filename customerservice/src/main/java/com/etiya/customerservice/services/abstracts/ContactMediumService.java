@@ -8,8 +8,8 @@ import com.etiya.customerservice.services.dtos.responses.contactMedium.*;
 
 public interface ContactMediumService {
     GetListResponse<GetAllContactMediumResponse> getAll(PageInfo pageInfo);
-    GetContactMediumResponse getById(long id);
+    GetContactMediumResponse getById(String id);
     CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest);
     UpdatedContactMediumResponse update(UpdateContactMediumRequest updateContactMediumRequest);
-    DeletedContactMediumResponse delete(long id);
+    DeletedContactMediumResponse delete(String id);
 }

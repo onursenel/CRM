@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class DeletedAddressResponse {
-    private long id;
+    private String id;
     private String description;
 }

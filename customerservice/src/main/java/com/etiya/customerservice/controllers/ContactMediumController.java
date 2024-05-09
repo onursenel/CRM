@@ -24,7 +24,7 @@ public class ContactMediumController {
     }
 
     @GetMapping("/{id}")
-    public GetContactMediumResponse getById(@PathVariable long id){
+    public GetContactMediumResponse getById(@PathVariable String id){
         return contactMediumService.getById(id);
     }
 
@@ -39,7 +39,7 @@ public class ContactMediumController {
     }
 
     @DeleteMapping("{id}")
-    public DeletedContactMediumResponse delete(@PathVariable long id){
+    public DeletedContactMediumResponse delete(@PathVariable String id){
         return contactMediumService.delete(id);
     }
 }

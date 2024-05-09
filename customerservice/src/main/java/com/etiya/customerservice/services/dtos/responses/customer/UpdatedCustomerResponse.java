@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdatedCustomerResponse {
-    private long id;
+    private String id;
     private String email;
     private LocalDateTime updatedDate;
 }

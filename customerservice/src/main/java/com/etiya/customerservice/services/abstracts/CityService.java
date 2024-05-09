@@ -11,13 +11,13 @@ import java.util.List;
 public interface CityService {
     GetListResponse<GetAllCityResponse> getAll(PageInfo pageInfo);
 
-    GetCityResponse getById(long id);
+    GetCityResponse getById(String id);
 
     CreatedCityResponse add(CreateCityRequest createCityRequest);
 
     UpdatedCityResponse update (UpdateCityRequest updateCityRequest);
 
-    DeletedCityResponse delete(long id);
+    DeletedCityResponse delete(String id);
 
 
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 public class GetAllContactMediumResponse {
-    private long id;
+    private String id;
     private String email;
     private String homePhone;
     private String fax;

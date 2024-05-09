@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class UpdateAddressRequest {
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
-    private long id;
+    private String id;
 
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
-    private long cityId;
+    private String cityId;
 
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
-    private long customerId;
+    private String customerId;
 
     @NotNull
     @NotEmpty

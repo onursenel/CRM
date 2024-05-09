@@ -18,7 +18,7 @@ public class IndividualCustomer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private String id;
 
     @Column(name = "first_name")
     private String firstName;

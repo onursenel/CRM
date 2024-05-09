@@ -46,7 +46,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     }
 
     @Override
-    public GetContactMediumResponse getById(long id) {
+    public GetContactMediumResponse getById(String id) {
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         return ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
     }
@@ -72,7 +72,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     }
 
     @Override
-    public DeletedContactMediumResponse delete(long id) {
+    public DeletedContactMediumResponse delete(String id) {
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         contactMedium.setDeletedDate(LocalDateTime.now());
         contactMediumRepository.save(contactMedium);

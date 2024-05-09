@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerBusinessRules customerBusinessRules;
     private CustomerRepository customerRepository;
     @Override
-    public GetCustomerResponse getById(long id) {
+    public GetCustomerResponse getById(String id) {
         customerBusinessRules.customerNotFound(id);
         Customer customer = customerRepository.findById(id).get();
         return CustomerMapper.INSTANCE.getCustomerResponseFromCity(customer);
@@ -79,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public DeletedCustomerResponse delete(long id) {
+    public DeletedCustomerResponse delete(String id) {
         customerBusinessRules.deleteCustomer(id);
         Customer customer = customerRepository.findById(id).get();
         customer.setDeletedDate(LocalDateTime.now());

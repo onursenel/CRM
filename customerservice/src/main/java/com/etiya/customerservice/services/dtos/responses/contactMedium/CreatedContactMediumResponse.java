@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreatedContactMediumResponse {
-    private long id;
+    private String id;
     private String email;
     private String homePhone;
     private String fax;

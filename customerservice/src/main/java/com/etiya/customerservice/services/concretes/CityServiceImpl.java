@@ -53,7 +53,7 @@ public class CityServiceImpl implements CityService {
 
 
     @Override
-    public GetCityResponse getById(long id) {
+    public GetCityResponse getById(String id) {
         City city = cityRepository.findById(id).get();//filter gerekli olur mu?  sor
         return CityMapper.INSTANCE.getCityResponseFromCity(city);
     }
@@ -81,7 +81,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public DeletedCityResponse delete(long id) {
+    public DeletedCityResponse delete(String id) {
 
         City city = cityRepository.findById(id).get();
         city.setDeletedDate(LocalDateTime.now());

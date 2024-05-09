@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetAllCustomerResponse {
-    private long id;
+    private String id;
     private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;

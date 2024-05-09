@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateContactMediumRequest {
-    private long id;
+    private String id;
     private String email;
     private String homePhone;
     private String fax;

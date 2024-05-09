@@ -10,9 +10,9 @@ import com.etiya.customerservice.services.dtos.responses.individualCustomer.*;
 import java.util.List;
 
 public interface IndividualCustomerService {
-    GetIndividualCustomerResponse getById(long id);
+    GetIndividualCustomerResponse getById(String id);
     GetListResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo);
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest);
     UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest);
-    DeletedIndividualCustomerResponse delete(long id);
+    DeletedIndividualCustomerResponse delete(String id);
 }

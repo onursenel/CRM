@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateCityRequest {
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
-    private long id;
+    private String id;
 
     @NotNull
     @NotEmpty

@@ -25,7 +25,7 @@ public class IndividualCustomersController {
         return individualCustomerService.getAll(pageInfo);
     }
     @GetMapping("{id}")
-    public GetIndividualCustomerResponse getById(@PathVariable long id){
+    public GetIndividualCustomerResponse getById(@PathVariable String id){
         return individualCustomerService.getById(id);
     }
 
@@ -40,7 +40,7 @@ public class IndividualCustomersController {
     }
 
     @DeleteMapping("{id}")
-    public DeletedIndividualCustomerResponse delete(@PathVariable long id){
+    public DeletedIndividualCustomerResponse delete(@PathVariable String id){
         return individualCustomerService.delete(id);
     }
 }

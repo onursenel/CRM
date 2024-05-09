@@ -26,7 +26,7 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public GetAddressResponse getById(@PathVariable long id){
+    public GetAddressResponse getById(@PathVariable String id){
         return addressService.getById(id);
     }
 
@@ -41,7 +41,7 @@ public class AddressController {
     }
 
     @DeleteMapping("{id}")
-    public DeletedAddressResponse delete(@PathVariable long id){
+    public DeletedAddressResponse delete(@PathVariable String id){
         return addressService.delete(id);
     }
 }
