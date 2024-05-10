@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Data
 public class UpdatedAddressResponse {
     private String id;
+    private String street;
+    private String houseNumber;
     private String description;
     private LocalDateTime updatedDate;
 }

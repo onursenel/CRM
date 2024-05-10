@@ -51,4 +51,10 @@ public class Messages {
         public static final String ContactMediumEmailExists = "Contact Medium Email is Exist";
     }
 
+    public class AddressMessage{
+        public static final String StreetIsNotNull = "Street is not null!";
+
+        public static final String HouseNumberIsNotNull = "House Number is not null!";
+    }
+
 }

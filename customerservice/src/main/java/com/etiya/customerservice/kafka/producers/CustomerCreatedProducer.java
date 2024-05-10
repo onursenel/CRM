@@ -10,16 +10,16 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerProducer {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerProducer.class);
-    private final KafkaTemplate<String,CustomerCreatedEvent> kafkaTemplate;
+public class CustomerCreatedProducer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerCreatedProducer.class);
+    private final KafkaTemplate<String, CustomerCreatedEvent> kafkaTemplate;
 
-    public CustomerProducer(KafkaTemplate<String,CustomerCreatedEvent> kafkaTemplate){
+    public CustomerCreatedProducer(KafkaTemplate<String,CustomerCreatedEvent> kafkaTemplate){
         this.kafkaTemplate = kafkaTemplate;
     }
 
     public void sendMessage(CustomerCreatedEvent customerCreatedEvent){
-        LOGGER.info(String.format("Customer added =>%s",customerCreatedEvent.toString()));
+        LOGGER.info(String.format("Customer created =>%s",customerCreatedEvent.toString()));
 
         Message<CustomerCreatedEvent> message = MessageBuilder.withPayload(customerCreatedEvent)
                 .setHeader(KafkaHeaders.TOPIC,"customer-created")

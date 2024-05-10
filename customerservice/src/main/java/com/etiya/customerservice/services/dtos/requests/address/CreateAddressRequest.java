@@ -1,6 +1,7 @@
 package com.etiya.customerservice.services.dtos.requests.address;
 
 import com.etiya.customerservice.services.messages.Messages;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,6 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreateAddressRequest {
+
+    @NotEmpty(message = Messages.AddressMessage.StreetIsNotNull)
+    private String street;
+
+    @NotEmpty(message = Messages.AddressMessage.HouseNumberIsNotNull)
+    private String houseNumber;
+
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
     private String cityId;
 

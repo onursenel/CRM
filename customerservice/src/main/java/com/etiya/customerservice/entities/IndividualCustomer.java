@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
 
@@ -14,9 +15,11 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "individual_customers")
 @Data
+@Where(clause = "deleted_date IS NULL")
+
 public class IndividualCustomer extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private String id;
 
@@ -44,7 +47,7 @@ public class IndividualCustomer extends BaseEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "customer_id")
     private Customer customer;
 }

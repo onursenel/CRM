@@ -15,6 +15,12 @@ public class UpdateAddressRequest {
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
     private String id;
 
+    @NotEmpty(message = Messages.AddressMessage.StreetIsNotNull)
+    private String street;
+
+    @NotEmpty(message = Messages.AddressMessage.HouseNumberIsNotNull)
+    private String houseNumber;
+
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
     private String cityId;
 

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass//sen başlı başına bir entity değilsin sadece baseEntitiy'sin demek.
+
 public class BaseEntity {
 
     @Column(name = "created_date",updatable = false)

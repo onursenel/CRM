@@ -42,7 +42,9 @@ public class AddressServiceImpl implements AddressService {
                 .collect(Collectors.toList());
         Page<Address> filteredResponse = new PageImpl<>(filteredAddresses, pageable, response.getTotalElements());
 
+
         GetListResponse<GetAllAddressResponse> addressResponse = AddressMapper.INSTANCE.getAllAddressResponseFromAddress(filteredResponse);
+
         addressResponse.setHasNext(filteredResponse.hasNext());
         addressResponse.setHasPrevious(filteredResponse.hasPrevious());
         return addressResponse;

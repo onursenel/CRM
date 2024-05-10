@@ -17,7 +17,7 @@ import java.util.List;
 public class ContactMedium extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private String id;
 
