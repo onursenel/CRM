@@ -29,6 +29,7 @@
     <bytecodeTargetLevel>
       <module name="common.main" target="17" />
       <module name="common.test" target="17" />
+      <module name="demo" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
