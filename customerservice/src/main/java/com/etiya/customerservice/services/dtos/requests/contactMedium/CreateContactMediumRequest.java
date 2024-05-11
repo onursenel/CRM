@@ -15,4 +15,5 @@ public class CreateContactMediumRequest {
     private String homePhone;
     private String fax;
     private String mobilePhone;
+    private String customerId;
 }
