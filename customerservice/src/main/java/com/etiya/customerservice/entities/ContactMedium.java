@@ -33,7 +33,7 @@ public class ContactMedium extends BaseEntity {
     @Column(name = "mobilePhone")
     private String mobilePhone;
 
-    @OneToOne
-    @JoinColumn(name = "customer_id")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 }
