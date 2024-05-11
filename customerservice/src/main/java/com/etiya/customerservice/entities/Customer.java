@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -15,19 +16,14 @@ import java.util.List;
 @Entity
 @Table(name = "customers")
 @Data
-
+@Where(clause = "deletedDate IS NULL")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Customer extends BaseEntity {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id")
     private String id;
-
-    @Column(name = "email")
-    private String email;
-
-    @OneToOne(mappedBy = "customer")
-    private IndividualCustomer individualCustomer;
 
     @OneToOne(mappedBy = "customer")
     private ContactMedium contactMedium;

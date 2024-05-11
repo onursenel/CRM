@@ -12,7 +12,7 @@ import java.util.List;
 public interface IndividualCustomerService {
     GetIndividualCustomerResponse getById(String id);
     GetListResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo);
-    CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest);
+    CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception;
     UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest);
     DeletedIndividualCustomerResponse delete(String id);
 }

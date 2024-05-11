@@ -1,6 +1,7 @@
 package com.etiya.customerservice.services.rules;
 
 
+import com.etiya.customerservice.adapters.CustomerCheckService;
 import com.etiya.customerservice.core.crossCusttingConcerns.exceptions.types.BusinessException;
 import com.etiya.customerservice.entities.IndividualCustomer;
 import com.etiya.customerservice.repositories.IndividualCustomerRepository;
@@ -15,11 +16,22 @@ import java.util.Optional;
 
 public class IndividualCustomerBusinessRules {
     private IndividualCustomerRepository individualCustomerRepository;
+    private CustomerCheckService customerCheckService;
     public void individualCustomerNationalityIdCanNotBeDuplicatedWhenInserted(String nationalityId){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findByNationalityIdIgnoreCase(nationalityId);
 
         if(individualCustomer.isPresent()){
             throw new BusinessException(Messages.BusinessErrors.NATIONALITY_ID_EXIST);
+        }
+    }
+
+    public void checkIfNationalIdentityExists(String nationalityId,String firstName, String lastName,int birthDate) throws Exception {
+        if(!customerCheckService.checkIfRealPerson(
+                nationalityId,
+                firstName,
+                lastName,
+                birthDate)){
+            throw new BusinessException("kullanıcı bulunamadı ! ");
         }
     }
 }

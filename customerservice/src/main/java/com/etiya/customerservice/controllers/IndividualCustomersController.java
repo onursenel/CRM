@@ -30,7 +30,7 @@ public class IndividualCustomersController {
     }
 
     @PostMapping
-    public CreatedIndividualCustomerResponse add(@Valid @RequestBody CreateIndividualCustomerRequest createIndividualCustomerRequest){
+    public CreatedIndividualCustomerResponse add(@Valid @RequestBody CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         return individualCustomerService.add(createIndividualCustomerRequest);
     }
 
