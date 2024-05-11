@@ -43,15 +43,11 @@ public class CustomerServiceImpl implements CustomerService {
         Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
         Page<Customer> response = customerRepository.findAll(pageable);
 
-        List<Customer> filteredCustomer = response.getContent()
-                .stream()
-                .filter(customer -> customer.getDeletedDate() == null)
-                .collect(Collectors.toList());
-        Page<Customer> filteredResponse = new PageImpl<>(filteredCustomer, pageable, response.getTotalElements());
 
-        GetListResponse<GetAllCustomerResponse> customerResponse = CustomerMapper.INSTANCE.getAllCustomerResponseFromCustomer(filteredResponse);
-        customerResponse.setHasNext(filteredResponse.hasNext());
-        customerResponse.setHasPrevious(filteredResponse.hasPrevious());
+
+        GetListResponse<GetAllCustomerResponse> customerResponse = CustomerMapper.INSTANCE.getAllCustomerResponseFromCustomer(response);
+        customerResponse.setHasNext(response.hasNext());
+        customerResponse.setHasPrevious(response.hasPrevious());
         return customerResponse;
     }
 

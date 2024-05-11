@@ -15,5 +15,4 @@ public class GetCustomerResponse {
     private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private LocalDateTime deletedDate;
 }

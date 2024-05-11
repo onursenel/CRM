@@ -33,15 +33,9 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<ContactMedium> response = contactMediumRepository.findAll(pageable);
 
-        List<ContactMedium> filteredContactMediums = response.getContent()
-                .stream()
-                .filter(contactMedium -> contactMedium.getDeletedDate() == null)
-                .collect(Collectors.toList());
-        Page<ContactMedium> filteredResponse = new PageImpl<>(filteredContactMediums, pageable, response.getTotalElements());
-
-        GetListResponse<GetAllContactMediumResponse> contactMediumResponse = ContactMediumMapper.INSTANCE.getAllContactMediumResponseFromContactMedium(filteredResponse);
-        contactMediumResponse.setHasNext(filteredResponse.hasNext());
-        contactMediumResponse.setHasPrevious(filteredResponse.hasPrevious());
+        GetListResponse<GetAllContactMediumResponse> contactMediumResponse = ContactMediumMapper.INSTANCE.getAllContactMediumResponseFromContactMedium(response);
+        contactMediumResponse.setHasNext(response.hasNext());
+        contactMediumResponse.setHasPrevious(response.hasPrevious());
         return contactMediumResponse;
     }
 

@@ -13,22 +13,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CreatedIndividualCustomerResponse {
     private String id;
-
     private String firstName;
-
     private String middleName;
-
     private String lastName;
-
     private String gender;
-
     private String motherName;
-
     private String fatherName;
-
     private String nationalityId;
-
     private LocalDate birthDate;
-
     private LocalDateTime createdDate;
 }

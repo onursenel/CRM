@@ -44,12 +44,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
         Page<IndividualCustomer> response = individualCustomerRepository.findAll(pageable);
 
-//        List<IndividualCustomer> filteredIndividualCustomer = response.getContent()
-//                .stream()
-//                .filter(individualCustomer -> individualCustomer.getDeletedDate() == null)
-//                .collect(Collectors.toList());
-        //Page<IndividualCustomer> filteredResponse = new PageImpl<>(individualCustomerList, pageable, response.getTotalElements());
-
         GetListResponse<GetAllIndividualCustomerResponse> individualCustomerResponse = IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerResponseFromIndividualCustomer(response);
         individualCustomerResponse.setHasNext(response.hasNext());
         individualCustomerResponse.setHasPrevious(response.hasPrevious());

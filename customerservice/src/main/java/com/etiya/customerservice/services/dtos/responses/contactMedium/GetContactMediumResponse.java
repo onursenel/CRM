@@ -18,5 +18,4 @@ public class GetContactMediumResponse {
     private String mobilePhone;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private LocalDateTime deletedDate;
 }

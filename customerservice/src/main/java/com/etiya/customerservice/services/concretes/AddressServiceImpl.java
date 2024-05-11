@@ -36,17 +36,11 @@ public class AddressServiceImpl implements AddressService {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<Address> response = addressRepository.findAll(pageable);
 
-        List<Address> filteredAddresses = response.getContent()
-                .stream()
-                .filter(address -> address.getDeletedDate() == null)
-                .collect(Collectors.toList());
-        Page<Address> filteredResponse = new PageImpl<>(filteredAddresses, pageable, response.getTotalElements());
 
+        GetListResponse<GetAllAddressResponse> addressResponse = AddressMapper.INSTANCE.getAllAddressResponseFromAddress(response);
 
-        GetListResponse<GetAllAddressResponse> addressResponse = AddressMapper.INSTANCE.getAllAddressResponseFromAddress(filteredResponse);
-
-        addressResponse.setHasNext(filteredResponse.hasNext());
-        addressResponse.setHasPrevious(filteredResponse.hasPrevious());
+        addressResponse.setHasNext(response.hasNext());
+        addressResponse.setHasPrevious(response.hasPrevious());
         return addressResponse;
 
 //        return response.filter(address -> address.getDeletedDate()==null)
