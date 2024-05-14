@@ -14,5 +14,4 @@ public class GetAddressResponse {
     private String description;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private LocalDateTime deletedDate;
 }

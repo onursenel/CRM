@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "contact_medium")
 @Data
+@Where(clause = "deleted_date IS NULL")
 public class ContactMedium extends BaseEntity {
 
     @Id
@@ -33,7 +35,7 @@ public class ContactMedium extends BaseEntity {
     @Column(name = "mobilePhone")
     private String mobilePhone;
 
-    @OneToOne
-    @JoinColumn(name = "customer_id")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 }

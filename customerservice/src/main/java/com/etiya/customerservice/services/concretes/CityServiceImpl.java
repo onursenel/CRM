@@ -35,17 +35,11 @@ public class CityServiceImpl implements CityService {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());// Sayfalama bilgilerini kullanarak bir Pageable nesnesi oluşturuyoruz
         Page<City> response = cityRepository.findAll(pageable);// cityRepository üzerinden findAll metodunu kullanarak veritabanından tüm şehirleri çekiyoruz
 
-        List<City> filteredCities = response.getContent()  // Filtrelenmiş şehir listesini tutacak bir List nesnesi oluşturuyoruz
-                // Şehirleri filtrelereyek silinmiş olanları çıkarıyoruz
-                .stream()
-                .filter(city -> city.getDeletedDate() == null)
-                .collect(Collectors.toList());
-        Page<City> filteredResponse = new PageImpl<>(filteredCities, pageable, response.getTotalElements()); // Filtrelenmiş şehir listesini kullanarak yeni bir Page nesnesi oluşturuyoruz
 
-        GetListResponse<GetAllCityResponse> cityResponse = CityMapper.INSTANCE.getAllCityResponseFromCity(filteredResponse); // Filtrelenmiş Page nesnesini GetAllCityResponse nesnelerine dönüştürmek için CityMapper kullanarak bir GetListResponse nesnesi oluşturuyoruz
+        GetListResponse<GetAllCityResponse> cityResponse = CityMapper.INSTANCE.getAllCityResponseFromCity(response); // Filtrelenmiş Page nesnesini GetAllCityResponse nesnelerine dönüştürmek için CityMapper kullanarak bir GetListResponse nesnesi oluşturuyoruz
 
-        cityResponse.setHasNext(filteredResponse.hasNext());// cityResponse nesnesinin hasNext özelliğini, filtrelendikten sonra kalan veriler için doğru şekilde ayarlıyoruz
-        cityResponse.setHasPrevious(filteredResponse.hasPrevious());   // cityResponse nesnesinin hasPrevious özelliğini, filtrelendikten sonra kalan veriler için geçerli olan hasPrevious özelliği ile eşliyoruz
+        cityResponse.setHasNext(response.hasNext());// cityResponse nesnesinin hasNext özelliğini, filtrelendikten sonra kalan veriler için doğru şekilde ayarlıyoruz
+        cityResponse.setHasPrevious(response.hasPrevious());   // cityResponse nesnesinin hasPrevious özelliğini, filtrelendikten sonra kalan veriler için geçerli olan hasPrevious özelliği ile eşliyoruz
         return cityResponse; // Son olarak, filtrelenmiş ve dönüştürülmüş verileri içeren cityResponse nesnesini döndürüyoruz
     }
 

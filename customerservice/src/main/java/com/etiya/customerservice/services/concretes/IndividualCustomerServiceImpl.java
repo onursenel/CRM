@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -44,12 +45,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
         Page<IndividualCustomer> response = individualCustomerRepository.findAll(pageable);
 
-//        List<IndividualCustomer> filteredIndividualCustomer = response.getContent()
-//                .stream()
-//                .filter(individualCustomer -> individualCustomer.getDeletedDate() == null)
-//                .collect(Collectors.toList());
-        //Page<IndividualCustomer> filteredResponse = new PageImpl<>(individualCustomerList, pageable, response.getTotalElements());
-
         GetListResponse<GetAllIndividualCustomerResponse> individualCustomerResponse = IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerResponseFromIndividualCustomer(response);
         individualCustomerResponse.setHasNext(response.hasNext());
         individualCustomerResponse.setHasPrevious(response.hasPrevious());
@@ -65,6 +60,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 createIndividualCustomerRequest.getLastName(),
                 createIndividualCustomerRequest.getBirthDate().getYear()
                 );
+
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
@@ -72,7 +68,16 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
 
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(
-                createdIndividualCustomerResponse.getId(), createdIndividualCustomerResponse.getFirstName());  //ihtiyaç duyulan her şey
+                createdIndividualCustomerResponse.getId(),
+                createdIndividualCustomerResponse.getFirstName(),
+                createdIndividualCustomerResponse.getMiddleName(),
+                createdIndividualCustomerResponse.getLastName(),
+                createdIndividualCustomerResponse.getGender(),
+                createdIndividualCustomerResponse.getMotherName(),
+                createdIndividualCustomerResponse.getFatherName(),
+                createdIndividualCustomerResponse.getNationalityId(),
+                createdIndividualCustomerResponse.getBirthDate()
+                );  //ihtiyaç duyulan her şey
         customerCreatedProducer.sendMessage(customerCreatedEvent);
 
         return  createdIndividualCustomerResponse;

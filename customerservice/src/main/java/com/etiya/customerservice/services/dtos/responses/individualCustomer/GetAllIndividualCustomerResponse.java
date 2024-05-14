@@ -13,26 +13,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class GetAllIndividualCustomerResponse {
     private String id;
-
     private String firstName;
-
     private String middleName;
-
     private String lastName;
-
     private String gender;
-
     private String motherName;
-
     private String fatherName;
-
     private String nationalityId;
-
     private LocalDate birthDate;
-
     private LocalDateTime createdDate;
-
     private LocalDateTime updatedDate;
-
-    private LocalDateTime deletedDate;
 }
