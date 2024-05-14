@@ -1,8 +1,8 @@
 package com.etiya.customerservice.controllers;
 
 
-import com.etiya.customerservice.core.business.paging.PageInfo;
-import com.etiya.customerservice.core.business.responses.GetListResponse;
+import com.etiya.common.business.paging.PageInfo;
+import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.services.abstracts.AddressService;
 import com.etiya.customerservice.services.dtos.requests.address.CreateAddressRequest;
 import com.etiya.customerservice.services.dtos.requests.address.UpdateAddressRequest;
@@ -10,8 +10,6 @@ import com.etiya.customerservice.services.dtos.responses.address.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/addresses")

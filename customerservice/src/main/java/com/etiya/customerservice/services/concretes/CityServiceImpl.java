@@ -1,8 +1,7 @@
 package com.etiya.customerservice.services.concretes;
 
-import com.etiya.customerservice.core.business.paging.BasePagingModel;
-import com.etiya.customerservice.core.business.paging.PageInfo;
-import com.etiya.customerservice.core.business.responses.GetListResponse;
+import com.etiya.common.business.paging.PageInfo;
+import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.entities.City;
 import com.etiya.customerservice.repositories.CityRepository;
 import com.etiya.customerservice.services.abstracts.CityService;
@@ -13,14 +12,11 @@ import com.etiya.customerservice.services.mappers.CityMapper;
 import com.etiya.customerservice.services.rules.CityBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service

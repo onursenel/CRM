@@ -1,11 +1,9 @@
 package com.etiya.customerservice.services.mappers;
 
-import com.etiya.customerservice.core.business.responses.GetListResponse;
-import com.etiya.customerservice.entities.City;
+import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.entities.Customer;
 import com.etiya.customerservice.services.dtos.requests.customer.CreateCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.customer.UpdateCustomerRequest;
-import com.etiya.customerservice.services.dtos.responses.city.GetAllCityResponse;
 import com.etiya.customerservice.services.dtos.responses.customer.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

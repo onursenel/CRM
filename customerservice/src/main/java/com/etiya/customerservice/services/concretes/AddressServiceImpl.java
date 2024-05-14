@@ -1,7 +1,7 @@
 package com.etiya.customerservice.services.concretes;
 
-import com.etiya.customerservice.core.business.paging.PageInfo;
-import com.etiya.customerservice.core.business.responses.GetListResponse;
+import com.etiya.common.business.paging.PageInfo;
+import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.entities.Address;
 import com.etiya.customerservice.repositories.AddressRepository;
 import com.etiya.customerservice.services.abstracts.AddressService;

@@ -1,7 +1,7 @@
 package com.etiya.customerservice.controllers;
 
-import com.etiya.customerservice.core.business.paging.PageInfo;
-import com.etiya.customerservice.core.business.responses.GetListResponse;
+import com.etiya.common.business.paging.PageInfo;
+import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.services.abstracts.CustomerService;
 import com.etiya.customerservice.services.dtos.requests.customer.CreateCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.customer.UpdateCustomerRequest;
@@ -10,8 +10,6 @@ import com.etiya.customerservice.services.dtos.responses.customer.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/customerservice/api/v1/customer")
