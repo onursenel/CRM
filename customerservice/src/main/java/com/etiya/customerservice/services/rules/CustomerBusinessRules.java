@@ -1,12 +1,9 @@
 package com.etiya.customerservice.services.rules;
 
-import com.etiya.customerservice.core.crossCusttingConcerns.exceptions.types.BusinessException;
-import com.etiya.customerservice.entities.City;
+import com.etiya.common.crossCusttingConcerns.exceptions.types.BusinessException;
 import com.etiya.customerservice.entities.Customer;
-import com.etiya.customerservice.repositories.CityRepository;
 import com.etiya.customerservice.repositories.CustomerRepository;
 import com.etiya.customerservice.services.messages.Messages;
-import jakarta.persistence.Access;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

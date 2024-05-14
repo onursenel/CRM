@@ -1,11 +1,9 @@
 package com.etiya.customerservice.services.rules;
 
 
-import com.etiya.customerservice.core.business.abstracts.MessageService;
-import com.etiya.customerservice.core.crossCusttingConcerns.exceptions.types.BusinessException;
-import com.etiya.customerservice.entities.Address;
+import com.etiya.common.business.abstracts.MessageService;
+import com.etiya.common.crossCusttingConcerns.exceptions.types.BusinessException;
 import com.etiya.customerservice.entities.ContactMedium;
-import com.etiya.customerservice.repositories.AddressRepository;
 import com.etiya.customerservice.repositories.ContactMediumRepository;
 import com.etiya.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;

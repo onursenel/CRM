@@ -1,14 +1,10 @@
 package com.etiya.customerservice.services.mappers;
 
 
-import com.etiya.customerservice.core.business.responses.GetListResponse;
-import com.etiya.customerservice.entities.Address;
+import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.entities.ContactMedium;
-import com.etiya.customerservice.services.dtos.requests.address.CreateAddressRequest;
-import com.etiya.customerservice.services.dtos.requests.address.UpdateAddressRequest;
 import com.etiya.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiya.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
-import com.etiya.customerservice.services.dtos.responses.address.*;
 import com.etiya.customerservice.services.dtos.responses.contactMedium.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

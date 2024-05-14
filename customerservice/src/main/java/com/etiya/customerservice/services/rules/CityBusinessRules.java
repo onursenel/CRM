@@ -1,7 +1,7 @@
 package com.etiya.customerservice.services.rules;
 
 
-import com.etiya.customerservice.core.crossCusttingConcerns.exceptions.types.BusinessException;
+import com.etiya.common.crossCusttingConcerns.exceptions.types.BusinessException;
 import com.etiya.customerservice.entities.City;
 import com.etiya.customerservice.repositories.CityRepository;
 import com.etiya.customerservice.services.messages.Messages;

@@ -1,8 +1,8 @@
 package com.etiya.customerservice.controllers;
 
 
-import com.etiya.customerservice.core.business.paging.PageInfo;
-import com.etiya.customerservice.core.business.responses.GetListResponse;
+import com.etiya.common.business.paging.PageInfo;
+import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.services.abstracts.ContactMediumService;
 import com.etiya.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiya.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
