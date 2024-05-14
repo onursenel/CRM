@@ -22,6 +22,4 @@ public class CustomerCreatedEvent {
     private String nationalityId;
     private LocalDate birthDate;
 
-
-
 }
