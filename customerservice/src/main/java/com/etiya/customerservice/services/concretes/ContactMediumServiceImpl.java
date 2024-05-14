@@ -4,6 +4,7 @@ package com.etiya.customerservice.services.concretes;
 import com.etiya.customerservice.core.business.paging.PageInfo;
 import com.etiya.customerservice.core.business.responses.GetListResponse;
 import com.etiya.customerservice.entities.ContactMedium;
+import com.etiya.customerservice.entities.Customer;
 import com.etiya.customerservice.repositories.ContactMediumRepository;
 import com.etiya.customerservice.services.abstracts.ContactMediumService;
 import com.etiya.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
@@ -49,6 +50,8 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
         contactMediumBusinessRules.EmailCanNotBeDuplicatedWhenInserted(createContactMediumRequest.getEmail());
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
+        Customer customer = new Customer();
+        customer.setId(createContactMediumRequest.getCustomerId());
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
 
         CreatedContactMediumResponse createdContactMediumResponse = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -59,6 +60,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 createIndividualCustomerRequest.getLastName(),
                 createIndividualCustomerRequest.getBirthDate().getYear()
                 );
+
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
