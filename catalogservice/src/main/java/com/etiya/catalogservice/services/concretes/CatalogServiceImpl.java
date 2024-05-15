@@ -1,4 +1,4 @@
-package com.etiya.catalogservice.services.concreates;
+package com.etiya.catalogservice.services.concretes;
 
 import com.etiya.catalogservice.entities.Catalog;
 import com.etiya.catalogservice.repositories.CatalogRepository;

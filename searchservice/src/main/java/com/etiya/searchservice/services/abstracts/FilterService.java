@@ -1,23 +1,19 @@
 package com.etiya.searchservice.services.abstracts;
 
-import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.searchservice.entities.Customer;
-import com.etiya.searchservice.services.response.GetAllCustomer;
-import org.springframework.data.domain.Pageable;
+import com.etiya.searchservice.services.dtos.responses.SearchResponse;
+
+import java.util.List;
 
 
 public interface FilterService {
-    void add(Customer customer);
-    void update(Customer customer);
+    void addCustomer(Customer customer);
+    void updateCustomer(Customer customer);
+    void deleteCustomer(Customer customer);
 
-    GetListResponse<GetAllCustomer>search(
-            String nationalityId,
-            String customerId,
-            String accountId,
-            String firstName,
-            String middleName,
-            String lastName,
-            String orderId,
-            Pageable pageable
+    List<SearchResponse> getAll();
+    List<SearchResponse> search(
+            String nationalityId,String id,String accountNumber,String mobilePhone,String firstName,
+            String lastName,String orderNumber
     );
 }

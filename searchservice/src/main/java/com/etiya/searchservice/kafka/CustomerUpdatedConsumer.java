@@ -27,14 +27,10 @@ public class CustomerUpdatedConsumer {
         customer.setFirstName(customerUpdatedEvent.getFirstName());
         customer.setMiddleName(customerUpdatedEvent.getMiddleName());
         customer.setLastName(customerUpdatedEvent.getLastName());
-        customer.setGender(customerUpdatedEvent.getGender());
-        customer.setMotherName(customerUpdatedEvent.getMotherName());
-        customer.setFatherName(customerUpdatedEvent.getFatherName());
         customer.setNationalityId(customerUpdatedEvent.getNationalityId());
-        customer.setBirthDate(customerUpdatedEvent.getBirthDate());
 
 
         LOGGER.info(String.format("customer updated consumer success =>%s",customerUpdatedEvent.toString()));
-        this.filterService.update(customer);
+        this.filterService.updateCustomer(customer);
     }
 }
