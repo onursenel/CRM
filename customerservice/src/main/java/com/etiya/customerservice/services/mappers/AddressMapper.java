@@ -20,6 +20,9 @@ public interface AddressMapper {
     GetAddressResponse getAddressResponseFromAddress(Address address);
 
 
+
+    @Mapping(target = "customer.id",source = "customerId")
+    @Mapping(target = "city.id",source = "cityId")
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);     //createaddressrequestinden bana address oluştur parametrem bu
     CreatedAddressResponse createdAddressResponseFromAddress(Address address);
 

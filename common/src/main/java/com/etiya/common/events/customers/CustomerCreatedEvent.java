@@ -13,7 +13,6 @@ import java.time.LocalDate;
 
 public class CustomerCreatedEvent {
     private String id;
-    private String customerId;
     private String firstName;
     private String middleName;
     private String lastName;

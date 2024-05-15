@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CustomerUpdatedEvent {
     private String id;
-    private String customerId;
     private String firstName;
     private String middleName;
     private String lastName;
