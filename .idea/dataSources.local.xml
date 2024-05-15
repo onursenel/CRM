@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-233.14015.106">
-    <data-source name="crmcustomer@localhost" uuid="186db866-cbb9-44b9-bb48-564f7c8a55f9">
+    <data-source name="crmcatalog@localhost" uuid="8e1ebf0c-28e8-4d41-8997-e6ad1e9cdf81">
       <database-info product="PostgreSQL" version="16.3 (Debian 16.3-1.pgdg120+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.3" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
@@ -16,7 +16,7 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="crmcatalog@localhost" uuid="8e1ebf0c-28e8-4d41-8997-e6ad1e9cdf81">
+    <data-source name="crmcustomer@localhost" uuid="4aad8c08-a539-48d3-ba19-8b343931527a">
       <database-info product="PostgreSQL" version="16.3 (Debian 16.3-1.pgdg120+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.3" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
