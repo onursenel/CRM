@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="crmsearchdb@localhost">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.51">
+    <root id="1">
+      <ServerVersion>7.0.9</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="admin"/>
+    <schema id="3" parent="1" name="config"/>
+    <schema id="4" parent="1" name="crmsearchdb">
+      <Current>1</Current>
+      <LastIntrospectionLocalTimestamp>2024-05-18.11:57:58</LastIntrospectionLocalTimestamp>
+    </schema>
+    <schema id="5" parent="1" name="local"/>
+    <table id="6" parent="4" name="search-customer"/>
+  </database-model>
+</dataSource>

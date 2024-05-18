@@ -17,6 +17,6 @@ public class CreatedContactMediumResponse {
     private String homePhone;
     private String fax;
     private String mobilePhone;
-    private Customer customer;
+    private String customerId;
     private LocalDateTime createdDate;
 }

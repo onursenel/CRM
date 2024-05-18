@@ -31,5 +31,15 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="crmsearchdb@localhost" uuid="20126662-869a-43d3-bf2e-6ced12677178">
+      <database-info product="Mongo DB" version="7.0.9" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.18" dbms="MONGO" exact-version="7.0.9" exact-driver-version="1.18" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
   </component>
 </project>

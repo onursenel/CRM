@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "accounts")
-public class Account {
+@Table(name = "billing_accounts")
+public class BillingAccount {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -22,9 +22,20 @@ public class Account {
     @Column(name = "number")
     private String number;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "name")
     private String name;
 
     @Column(name = "type")
     private String type;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "address_id")
+    private Address address;
 }

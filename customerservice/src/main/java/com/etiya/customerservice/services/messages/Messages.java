@@ -3,10 +3,10 @@ package com.etiya.customerservice.services.messages;
 public class Messages {
 
     public static class BusinessErrors{
-        public static final String CITY_NAME_EXIST = "Bu şehir adı zaten mevcut";
+        public static final String CITY_NAME_EXIST = "City name is already exist";
         public static final String AddressDescriptionExists = "addressDescriptionExists";
 
-        public static final String NATIONALITY_ID_EXIST = "Bu TC kimlik numarası mevcut";
+        public static final String NATIONALITY_ID_EXIST = "This Identity number already exist";
 
     }
 
