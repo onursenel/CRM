@@ -9,16 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 
 public class CreateCustomerRequest {
 
-    @NotNull
-    @Size(min = 3, max = 30)
-    @NotEmpty(message = Messages.Customer.EMAIL_IS_NOT_EMPTY)
-    @Email(message = Messages.Customer.INVALID_EMAIL_FORMAT)
-    private String email;
 }
 

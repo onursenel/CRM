@@ -36,35 +36,10 @@ public class CustomerServiceImpl implements CustomerService {
         Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
         Page<Customer> response = customerRepository.findAll(pageable);
 
-
-
         GetListResponse<GetAllCustomerResponse> customerResponse = CustomerMapper.INSTANCE.getAllCustomerResponseFromCustomer(response);
         customerResponse.setHasNext(response.hasNext());
         customerResponse.setHasPrevious(response.hasPrevious());
         return customerResponse;
-    }
-
-    @Override
-    public CreatedCustomerResponse add(CreateCustomerRequest createCustomerRequest) {
-        customerBusinessRules.customerEmailCanNotBeDuplicatedWhenInserted(createCustomerRequest.getEmail());
-        Customer customer = CustomerMapper.INSTANCE.customerFromCreateCustomerRequest(createCustomerRequest);
-        Customer createdCustomer = customerRepository.save(customer);
-
-        CreatedCustomerResponse createdCustomerResponse = CustomerMapper.INSTANCE.createdCustomerResponseFromCity(createdCustomer);
-
-        return  createdCustomerResponse;
-    }
-
-    @Override
-    public UpdatedCustomerResponse update(UpdateCustomerRequest updateCustomerRequest) {
-        customerBusinessRules.customerEmailCanNotBeDuplicatedWhenInserted(updateCustomerRequest.getEmail());
-        customerBusinessRules.customerNotFound(updateCustomerRequest.getId());
-        Customer customer = CustomerMapper.INSTANCE.customerFromUpdateCustomerRequest(updateCustomerRequest);
-        Customer updatedCustomer = customerRepository.save(customer);
-
-        UpdatedCustomerResponse updatedCustomerResponse = CustomerMapper.INSTANCE.updatedCustomerResponseFromCity(updatedCustomer);
-
-        return  updatedCustomerResponse;
     }
 
     @Override

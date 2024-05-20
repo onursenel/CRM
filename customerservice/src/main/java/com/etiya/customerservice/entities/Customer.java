@@ -28,9 +28,6 @@ public class Customer extends BaseEntity {
     @OneToOne(mappedBy = "customer")
     private ContactMedium contactMedium;
 
-    @Column(name = "email")
-    private String email;
-
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
 

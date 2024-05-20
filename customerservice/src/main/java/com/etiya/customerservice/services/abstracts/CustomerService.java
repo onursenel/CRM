@@ -10,7 +10,5 @@ public interface CustomerService {
 
     GetCustomerResponse getById(String id);
     GetListResponse<GetAllCustomerResponse> getAll(PageInfo pageInfo);
-    CreatedCustomerResponse add(CreateCustomerRequest createCustomerRequest);
-    UpdatedCustomerResponse update(UpdateCustomerRequest updateCustomerRequest);
     DeletedCustomerResponse delete(String id);
 }

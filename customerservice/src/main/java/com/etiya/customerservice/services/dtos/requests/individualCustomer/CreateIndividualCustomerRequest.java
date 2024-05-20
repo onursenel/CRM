@@ -20,7 +20,7 @@ public class CreateIndividualCustomerRequest {
     @Size(min = 2,message = Messages.IndividualCustomer.FIRST_NAME_MIN_SIZE)
     private String firstName;
 
-    @Size(min=2,message = Messages.IndividualCustomer.MIDDLE_NAME_MIN_SIZE)
+
     private String middleName;
 
     @NotEmpty(message = Messages.IndividualCustomer.LAST_NAME_IS_NOT_EMPTY)
@@ -29,10 +29,10 @@ public class CreateIndividualCustomerRequest {
 
     private String gender;
 
-    @Size(min = 2,message = Messages.IndividualCustomer.MOTHER_NAME_MIN_SIZE)
+
     private String motherName;
 
-    @Size(min = 2,message = Messages.IndividualCustomer.FATHER_NAME_MIN_SIZE)
+
     private String fatherName;
 
     @NotEmpty(message = Messages.IndividualCustomer.NATIONALITY_ID_IS_NOT_EMPTY)

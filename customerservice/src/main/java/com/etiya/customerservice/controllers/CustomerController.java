@@ -27,15 +27,6 @@ public class CustomerController {
         return customerService.getById(id);
     }
 
-    @PostMapping
-    public CreatedCustomerResponse add(@Valid @RequestBody CreateCustomerRequest createCustomerRequest){
-        return customerService.add(createCustomerRequest);
-    }
-
-    @PutMapping
-    public UpdatedCustomerResponse update(@Valid @RequestBody UpdateCustomerRequest updateCustomerRequest){
-        return customerService.update(updateCustomerRequest);
-    }
 
     @DeleteMapping("{id}")
     public DeletedCustomerResponse delete(@PathVariable String id){

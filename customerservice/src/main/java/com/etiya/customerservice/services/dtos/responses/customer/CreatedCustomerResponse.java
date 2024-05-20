@@ -11,6 +11,5 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CreatedCustomerResponse {
     private String id;
-    private String email;
     private LocalDateTime createdDate;
 }

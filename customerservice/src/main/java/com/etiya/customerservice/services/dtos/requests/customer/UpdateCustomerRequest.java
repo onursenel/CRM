@@ -16,7 +16,4 @@ public class UpdateCustomerRequest {
     @NotNull(message = Messages.IdMessage.ID_IS_NOT_NULL)
     private String id;
 
-    @NotEmpty(message = Messages.Customer.EMAIL_IS_NOT_EMPTY)
-    @Email(message = Messages.Customer.INVALID_EMAIL_FORMAT)
-    private String email;
 }

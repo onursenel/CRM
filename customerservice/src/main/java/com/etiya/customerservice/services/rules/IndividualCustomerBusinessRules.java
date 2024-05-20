@@ -31,7 +31,7 @@ public class IndividualCustomerBusinessRules {
                 firstName,
                 lastName,
                 birthDate)){
-            throw new BusinessException("kullanıcı bulunamadı ! ");
+            throw new BusinessException(Messages.IndividualCustomer.NO_SUCH_CITIZEN_WAS_FOUND);
         }
     }
 }

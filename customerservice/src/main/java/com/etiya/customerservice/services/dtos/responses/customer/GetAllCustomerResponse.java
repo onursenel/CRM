@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class GetAllCustomerResponse {
     private String id;
-    private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 

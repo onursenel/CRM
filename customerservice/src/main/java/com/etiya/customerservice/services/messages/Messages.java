@@ -10,6 +10,12 @@ public class Messages {
 
     }
 
+    public class GeneralMessages{
+        public static final String REPLACE_ALL_REGEX = "\\s";
+        public static final String REPLACE_ALL_REPLACEMENT = "";
+        public static final String GSM_REGEX = "^[0-9]{10}$";
+    }
+
     public class IdMessage{
         public static final String ID_IS_NOT_NULL = "id is not null";
         public static final String ID_IS_NOT_FOUND = "id is not found";
@@ -18,9 +24,9 @@ public class Messages {
 
     public class Customer{
 
-        public static final String EMAIL_IS_NOT_EMPTY ="Email is not empty!";
 
-        public static final String INVALID_EMAIL_FORMAT ="Invalid email format!";
+
+
         public static final String DELETED_CUSTOMER = "This customer is deleted";
         public static final String EMAIL_EXIST = "This e-mail allready exsist";
     }
@@ -42,13 +48,19 @@ public class Messages {
         public static final String MOTHER_NAME_MIN_SIZE = "Mother name must have at least two characters!";
         public static final String FATHER_NAME_MIN_SIZE = "Father name must have at least two characters!";
 
+        public static final String NO_SUCH_CITIZEN_WAS_FOUND = "No such citizen was found";
+
 
     }
     public class CityMessage{
     }
 
     public class ContactMediumMessage{
-        public static final String ContactMediumEmailExists = "Contact Medium Email is Exist";
+        public static final String ContactMediumEmailExists = "Contact Medium Email is already Exist";
+
+        public static final String EMAIL_IS_NOT_EMPTY ="Email is not empty!";
+
+        public static final String INVALID_EMAIL_FORMAT ="Invalid email format!";
     }
 
     public class AddressMessage{

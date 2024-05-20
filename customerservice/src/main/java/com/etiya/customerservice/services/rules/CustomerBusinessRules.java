@@ -28,12 +28,4 @@ public class CustomerBusinessRules {
             throw new BusinessException(Messages.Customer.DELETED_CUSTOMER);
         }
     }
-
-    public void customerEmailCanNotBeDuplicatedWhenInserted(String email) {
-        Optional<Customer> customer = customerRepository.findByEmailIgnoreCase(email);
-
-        if (customer.isPresent()) {
-            throw new BusinessException(Messages.Customer.EMAIL_EXIST);
-        }
-    }
 }

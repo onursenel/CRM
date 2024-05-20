@@ -46,6 +46,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
         contactMediumBusinessRules.EmailCanNotBeDuplicatedWhenInserted(createContactMediumRequest.getEmail());
+        contactMediumBusinessRules.checkByCustomerId(createContactMediumRequest.getCustomerId());
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
         Customer customer = new Customer();
         customer.setId(createContactMediumRequest.getCustomerId());
