@@ -27,6 +27,7 @@
         </processorPath>
         <module name="customerservice" />
         <module name="catalogservice" />
+        <module name="authservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -39,6 +40,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ConfigServer" options="-parameters" />
       <module name="GatewayServer" options="-parameters" />
+      <module name="authservice" options="-parameters" />
       <module name="basketservice" options="-parameters" />
       <module name="catalogservice" options="-parameters" />
       <module name="common" options="-parameters" />

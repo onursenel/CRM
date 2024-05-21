@@ -4,11 +4,13 @@ package com.etiya.customerservice.controllers;
 import com.etiya.common.business.paging.PageInfo;
 import com.etiya.common.business.responses.GetListResponse;
 import com.etiya.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiya.customerservice.services.dtos.requests.individualCustomer.CheckNationalityIdentityRequest;
 import com.etiya.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiya.customerservice.services.dtos.responses.individualCustomer.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -40,5 +42,11 @@ public class IndividualCustomersController {
     @DeleteMapping("{id}")
     public DeletedIndividualCustomerResponse delete(@PathVariable String id){
         return individualCustomerService.delete(id);
+    }
+
+    @PostMapping("/nationality-identity/check")
+    @ResponseStatus(HttpStatus.OK)
+    public Boolean checkNationalIdentityExists(@RequestBody CheckNationalityIdentityRequest checkNationalityIdentityRequest) throws Exception {
+        return individualCustomerService.checkIfNationalIdentityExists(checkNationalityIdentityRequest);
     }
 }

@@ -7,6 +7,7 @@ import com.etiya.customerservice.entities.IndividualCustomer;
 import com.etiya.customerservice.kafka.producers.CustomerCreatedProducer;
 import com.etiya.customerservice.repositories.IndividualCustomerRepository;
 import com.etiya.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiya.customerservice.services.dtos.requests.individualCustomer.CheckNationalityIdentityRequest;
 import com.etiya.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiya.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiya.customerservice.services.dtos.responses.individualCustomer.*;
@@ -94,5 +95,15 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomer.setDeletedDate(LocalDateTime.now());
         individualCustomerRepository.save(individualCustomer);
         return IndividualCustomerMapper.INSTANCE.deletedIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
+    }
+
+    @Override
+    public Boolean checkIfNationalIdentityExists(CheckNationalityIdentityRequest checkNationalityIdentityRequest) throws Exception {
+        return individualCustomerBusinessRules.checkIfNationalIdentityExists(
+                checkNationalityIdentityRequest.getNationalityId(),
+                checkNationalityIdentityRequest.getFirstName(),
+                checkNationalityIdentityRequest.getLastName(),
+                checkNationalityIdentityRequest.getBirthDate()
+        );
     }
 }
