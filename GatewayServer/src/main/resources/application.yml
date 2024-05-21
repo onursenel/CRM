@@ -1,8 +1,50 @@
+#spring:
+#  application:
+#    name: GatewayServer
+#  cloud:
+#    config:
+#      profile: dev
+#  config:
+#    import: configserver:http://localhost:8050
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+    preferIpAddress: true
+server:
+  port: 8001
 spring:
   application:
-    name: GatewayServer
+    name: gatewayserver
   cloud:
-    config:
-      profile: dev
-  config:
-    import: configserver:http://localhost:8050
+    gateway:
+      default-filters:
+        - RemoveRequestHeader=Origin
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:8050"
+              - "http://localhost:8088"
+              - "http://localhost:8081"
+              - "http://localhost:8083"
+              - "http://localhost:8084"
+              - "http://localhost:4200"
+            allowCredentials: true
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTIONS
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true

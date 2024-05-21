@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 
 public class CustomerUpdatedConsumer {
+    private FilterService filterService;
 
     public static final Logger LOGGER = LoggerFactory.getLogger(CustomerUpdatedConsumer.class);
-    private FilterService filterService;
     @KafkaListener(topics = "customer-updated", groupId = "update-customer")
     private void consume(CustomerUpdatedEvent customerUpdatedEvent){
-        Customer customer = new Customer();
+        Customer customer = filterService.findById(customerUpdatedEvent.getId());
         customer.setId(customerUpdatedEvent.getId());
         customer.setFirstName(customerUpdatedEvent.getFirstName());
         customer.setMiddleName(customerUpdatedEvent.getMiddleName());

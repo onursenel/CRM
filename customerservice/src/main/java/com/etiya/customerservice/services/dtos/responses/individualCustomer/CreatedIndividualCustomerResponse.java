@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreatedIndividualCustomerResponse {
+    private String customerId;
     private String id;
     private String firstName;
     private String middleName;

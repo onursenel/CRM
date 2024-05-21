@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetIndividualCustomerResponse {
+    private String customerId;
     private String id;
     private String firstName;
     private String middleName;

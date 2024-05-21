@@ -18,13 +18,12 @@ import java.time.LocalDateTime;
 public class CustomerDeletedConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerDeletedConsumer.class);
     private FilterService filterService;
-    private FilterRepository filterRepository;
 
     @KafkaListener(topics = "customer-deleted", groupId = "delete-customer")
     private void consume(CustomerDeletedEvent customerDeletedEvent){
-        Customer customer = filterRepository.findById(customerDeletedEvent.getId()).get();
+        Customer customer = filterService.findById(customerDeletedEvent.getId());
         customer.setId(customerDeletedEvent.getId());
-        customer.setDeletedDate(LocalDateTime.now());
+        customer.setDeletedDate(customerDeletedEvent.getDeletedDate());
 
 
         LOGGER.info(String.format("customer deleted consumer success =>%s",customerDeletedEvent.toString()));

@@ -8,9 +8,33 @@
     <schema id="3" parent="1" name="config"/>
     <schema id="4" parent="1" name="crmsearchdb">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-05-18.11:57:58</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-05-21.21:07:52</LastIntrospectionLocalTimestamp>
     </schema>
     <schema id="5" parent="1" name="local"/>
     <table id="6" parent="4" name="search-customer"/>
+    <column id="7" parent="6" name="_id">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="8" parent="6" name="_class">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="9" parent="6" name="firstName">
+      <DasType>String|12s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="10" parent="6" name="lastName">
+      <DasType>String|12s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="11" parent="6" name="middleName">
+      <DasType>String|12s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="12" parent="6" name="nationalityId">
+      <DasType>String|12s</DasType>
+      <Position>6</Position>
+    </column>
   </database-model>
 </dataSource>

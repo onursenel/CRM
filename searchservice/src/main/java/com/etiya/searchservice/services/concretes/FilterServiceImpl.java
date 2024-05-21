@@ -36,6 +36,11 @@ public class FilterServiceImpl implements FilterService {
     }
 
     @Override
+    public Customer findById(String id) {
+        return this.filterRepository.findById(id).get();
+    }
+
+    @Override
     public List<SearchResponse> getAll() {
         List<Customer> customerList = filterRepository.findAll();
 

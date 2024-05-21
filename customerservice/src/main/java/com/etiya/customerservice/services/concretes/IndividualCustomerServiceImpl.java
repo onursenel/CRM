@@ -3,8 +3,11 @@ package com.etiya.customerservice.services.concretes;
 import com.etiya.common.events.customers.CustomerCreatedEvent;
 import com.etiya.common.business.paging.PageInfo;
 import com.etiya.common.business.responses.GetListResponse;
+import com.etiya.common.events.customers.CustomerDeletedEvent;
+import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import com.etiya.customerservice.entities.IndividualCustomer;
 import com.etiya.customerservice.kafka.producers.CustomerCreatedProducer;
+import com.etiya.customerservice.kafka.producers.CustomerUpdatedProducer;
 import com.etiya.customerservice.repositories.IndividualCustomerRepository;
 import com.etiya.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiya.customerservice.services.dtos.requests.individualCustomer.CheckNationalityIdentityRequest;
@@ -28,6 +31,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private IndividualCustomerRepository individualCustomerRepository;
     private CustomerCreatedProducer customerCreatedProducer;
+    private CustomerUpdatedProducer customerUpdatedProducer;
 
     @Override
     public GetIndividualCustomerResponse getById(String id) {
@@ -61,9 +65,9 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-
+        createdIndividualCustomerResponse.setCustomerId(createdIndividualCustomer.getId());
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(
-                createdIndividualCustomerResponse.getId(),
+                createdIndividualCustomerResponse.getCustomerId(),
                 createdIndividualCustomerResponse.getFirstName(),
                 createdIndividualCustomerResponse.getMiddleName(),
                 createdIndividualCustomerResponse.getLastName(),
@@ -85,6 +89,18 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
 
+        CustomerUpdatedEvent customerUpdatedEvent = new CustomerUpdatedEvent(
+                updatedIndividualCustomerResponse.getId(),
+                updatedIndividualCustomerResponse.getFirstName(),
+                updatedIndividualCustomerResponse.getMiddleName(),
+                updatedIndividualCustomerResponse.getLastName(),
+                updatedIndividualCustomerResponse.getGender(),
+                updatedIndividualCustomerResponse.getMotherName(),
+                updatedIndividualCustomerResponse.getFatherName(),
+                updatedIndividualCustomerResponse.getNationalityId(),
+                updatedIndividualCustomerResponse.getBirthDate()
+        );  //ihtiyaç duyulan her şey
+        customerUpdatedProducer.sendMessage(customerUpdatedEvent);
         return  updatedIndividualCustomerResponse;
 
     }
@@ -94,6 +110,8 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomer.setDeletedDate(LocalDateTime.now());
         individualCustomerRepository.save(individualCustomer);
+
+
         return IndividualCustomerMapper.INSTANCE.deletedIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
     }
 
